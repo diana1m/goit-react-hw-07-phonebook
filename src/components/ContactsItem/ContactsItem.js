@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types';
-import { Item, BtnDelete } from './ContactItem.styled';
+import { Item, BtnDelete, Box, Number } from './ContactItem.styled';
 import { useDispatch } from "react-redux";
-import { deleteContacts } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 
 export const ContactsItem = ({id, name, number}) => {
     const dispatch = useDispatch();
-    const handleDelete = () => dispatch(deleteContacts(id));
+    const handleDelete = () => dispatch(deleteContact(id));
 
     return(
         <Item>
-            <p>{name}: {number}</p>
+            <Box>
+                <p>{name}: </p>
+                <Number>{number} </Number>
+            </Box>
+            
             <BtnDelete onClick={handleDelete}>Delete</BtnDelete>
         </Item>
     )

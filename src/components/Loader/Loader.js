@@ -1,16 +1,20 @@
-import { Hearts } from  'react-loader-spinner';
+import { MutatingDots } from  'react-loader-spinner';
 import { Overlay } from 'components/Loader/Loader.styled';
 
 export const Loader = () => {
     return (
         <Overlay>
-            <Hearts height="80"
-                width="240"
-                color="#a94d69"
-                ariaLabel="hearts-loading"
+            <MutatingDots 
+                height="250"
+                width="250"
+                color="#383886"
+                secondaryColor= '#383886'
+                radius='12.5'
+                ariaLabel="mutating-dots-loading"
                 wrapperStyle={{}}
                 wrapperClass=""
-                visible={true}/>
+                visible={true}
+                />
         </Overlay>  
     )
 }

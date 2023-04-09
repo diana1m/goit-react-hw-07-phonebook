@@ -1,9 +1,9 @@
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';  
 import 'yup-phone';
-import {Form, ErrorFormik, Button} from './Form.styled';
+import {Form, ErrorFormik, Button, InputStyled} from './Form.styled';
 import { useDispatch } from "react-redux";
-import { addContacts } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
 
@@ -30,18 +30,24 @@ export const ContactsForm = () => {
           if(contacts.find(contact => contact.name === values.name)){
             return alert(`${values.name} is already in contacts!`)
           }
-          dispatch(addContacts(values.name, values.number));
+          const contact = {
+            name: values.name,
+            number: values.number,
+          }
+          dispatch(addContact(contact));
           actions.resetForm();
         }}
         >
           <Form>
-            <label htmlFor="name">Name</label>
-            <Field name="name" type="text" />
-            <ErrorFormik name="name" component="span"/>
-
-            <label htmlFor="number">Number</label>
-            <Field name="number" type="tel" />
-            <ErrorFormik name="number" component="span" />
+              <label htmlFor="name">Name</label>
+              <InputStyled name="name" type="text"/>
+              <ErrorFormik name="name" component="span"/>
+          
+              <label htmlFor="number">Number</label>
+              <InputStyled name="number" type="tel" />
+              <ErrorFormik name="number" component="span" />
+            
+            
 
             <Button type="submit" >Add contact</Button>
           </Form>
